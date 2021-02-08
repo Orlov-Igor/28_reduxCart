@@ -1,14 +1,15 @@
 import React from 'react';
 import { Card, Icon, Image, Grid, Button } from 'semantic-ui-react';
 import { useSelector, useDispatch  } from 'react-redux';
-import { addItem } from '../redux/actions/cart';
+import { addItem, increaseQuantity } from '../redux/actions/cart';
 
 function ProductList() {
 	const { shop } = useSelector(state => state.shoppingCart);
+	const { cart } = useSelector(state => state.shoppingCart);
 	const dispatch = useDispatch();
 
 	const addToCart = (id) => {
-		dispatch(addItem(id));
+		cart.every(elem => elem.id !== id)?dispatch(addItem(id)):dispatch(increaseQuantity(id));
 	}
 	
 	return(

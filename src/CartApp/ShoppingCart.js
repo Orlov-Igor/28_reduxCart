@@ -4,8 +4,9 @@ import {  useSelector } from 'react-redux';
 import { Container, Header, Menu, Icon, Label } from 'semantic-ui-react';
  import HomePage from './components/HomePage';
 import ProductList from './components/ProductList';
-import Cart from './components/Cart';
+import Cart from './components/CartList';
 import NotFound from './components/NotFound';
+import Total from './components/Total';
 
 
 
@@ -23,8 +24,8 @@ function ShoppingCart() {
 					<NavLink to='/cart' className='item' style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
 						<div style={{display: 'flex'}}>Cart</div>
 					    <div style={{display: 'flex', marginLeft: 15}}>
-							<Icon name='cart' size='large' />
-							<Label>{cart.length}</Label>
+							<Icon name='cart' size='large' style={{marginTop: 5}} />
+							<Total />
 						</div>
 					</NavLink>
 					<NavLink to='/sale' className='item'>Sale</NavLink>
@@ -39,7 +40,7 @@ function ShoppingCart() {
 						<ProductList />
 					</Route>
 					<Route path='/cart'>
-						{cart.length === 0?'Cart is empty':<Cart />}  
+						{cart.length === 0?'Cart is empty. Choose something':<Cart />}  
 					</Route>
 					<Route path='*'>
 						<NotFound />
